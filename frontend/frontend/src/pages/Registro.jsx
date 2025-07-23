@@ -1,22 +1,25 @@
 // Registro.js
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import api from '../services/api'
 
 function Registro() {
   const navigate = useNavigate();
-  const [usuario, setUsuario] = useState('');
+  const [usuario, setUsuario] = useState('')
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const [confirmarSenha, setConfirmarSenha] = useState('');
 
-  const handleRegistro = (e) => {
+  const handleRegistro = async (e) => {
     e.preventDefault();
-    if (senha !== confirmarSenha) {
-      alert('As senhas não conferem');
-      return;
+
+    try {
+      const response = await api.post('/registro', { usuario, email, senha });
+      alert('Cadastro realizado com sucesso!');
+      navigate('/');
+    } catch (error) {
+      console.error(error);
+      alert(error.response?.data?.message || 'Erro ao registrar');
     }
-    alert('Cadastro realizado com sucesso!');
-    navigate('/');
   };
 
   return (

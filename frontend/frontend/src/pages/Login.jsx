@@ -1,18 +1,24 @@
-// Login.js
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import api from '../services/api'
 
 function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (email === 'usuario@teste.com' && senha === '123456') {
+
+    try {
+      const response = await api.post('/login', { email, senha });
+
+      localStorage.setItem('token', response.data.token);
+
       navigate('/painel');
-    } else {
-      alert('Email ou senha inválidos');
+    } catch (error) {
+      console.error(error);
+      alert(error.response?.data?.message || 'Falha no login');
     }
   };
 

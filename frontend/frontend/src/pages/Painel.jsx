@@ -1,10 +1,11 @@
 import React from 'react'
+import LogoutButton from '../components/LogoutButton';
 
 const Painel = () => {
   return (
     <div>
-      <h1>Bem-vindo à tela principal!</h1>
-      <p>Aqui é o conteúdo após o login.</p>
+      <h1>teste</h1>
+      <LogoutButton/>
     </div>
   );
 }

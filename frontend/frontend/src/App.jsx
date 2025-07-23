@@ -4,6 +4,7 @@ import Login from './pages/Login'
 import Painel from './pages/Painel'
 import Registro from './pages/Registro'
 
+
 function App() {
 
 
@@ -12,7 +13,9 @@ function App() {
       <Routes>
         <Route path='/' element={<Login/>}/>
         <Route path='/registro' element={<Registro/>}/>
-        <Route path='/painel' element={<Painel/>}/>
+        <Route path='/painel' element={
+        <Painel />
+    }/>
       </Routes>
     </BrowserRouter>
   )
